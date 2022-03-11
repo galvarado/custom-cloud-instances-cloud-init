@@ -1,0 +1,17 @@
+#cloud-config
+package_update: true
+packages:
+  - nginx
+
+write_files: 
+  - path: /run/myserver/index.html
+    owner: root:root
+    permissions: "0644"
+    content: "<h1>Hello, I was customized by Cloud-init.</h1>"
+
+runcmd:
+  - cp /run/myserver/index.html /var/www/html/index.nginx-debian.html
+  - systemctl enable --no-block nginx 
+  - systemctl start --no-block nginx 
+
+final_message: "The system is finally up, after $UPTIME seconds"
