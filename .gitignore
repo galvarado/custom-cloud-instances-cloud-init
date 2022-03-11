@@ -5,7 +5,7 @@
 **.tar.gz
 
 # Local .terraform and vagrant directories
-**/.terraform/*
+**/.terraform/**
 **/.vagrant/*
 
 # .tfstate files
