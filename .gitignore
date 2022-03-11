@@ -1,7 +1,3 @@
-**.env
-**.environment
-**manifest_*.json
-
 **.tar.gz
 
 # Local .terraform and vagrant directories
