@@ -1,7 +1,7 @@
 # create an IGW (Internet Gateway)
 # It enables the vpc to connect to the internet
 resource "aws_internet_gateway" "prod_igw" {
-  vpc_id = aws_vpc.idex_vpc.id
+  vpc_id = aws_vpc.dex_vpc.id
 
   tags = {
     Name = "prod_igw"
@@ -11,7 +11,7 @@ resource "aws_internet_gateway" "prod_igw" {
 # create a custom route table for public subnets
 # public subnets can reach the internet buy using this
 resource "aws_route_table" "prod_public_crt" {
-  vpc_id = aws_vpc.idex_vpc.id
+  vpc_id = aws_vpc.dex_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.prod_igw.id
@@ -24,11 +24,11 @@ resource "aws_route_table" "prod_public_crt" {
 
 # route table associations
 resource "aws_route_table_association" "prod_crta_public_subnet_1" {
-  subnet_id      = aws_subnet.idex_subnet_public_1.id
+  subnet_id      = aws_subnet.dex_subnet_public_1.id
   route_table_id = aws_route_table.prod_public_crt.id
 }
 
-resource "aws_vpc" "idex_vpc" {
+resource "aws_vpc" "dex_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
@@ -36,25 +36,25 @@ resource "aws_vpc" "idex_vpc" {
   instance_tenancy     = "default"
 
   tags = {
-    Name = "idex_vpc"
+    Name = "dex_vpc"
   }
 }
 
-resource "aws_subnet" "idex_subnet_public_1" {
-  vpc_id                  = aws_vpc.idex_vpc.id
+resource "aws_subnet" "dex_subnet_public_1" {
+  vpc_id                  = aws_vpc.dex_vpc.id
   cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = var.AVAILABILITY_ZONE
 
   tags = {
-    Name = "idex_subnet_public_1"
+    Name = "dex_subnet_public_1"
   }
 }
 
 # security groups
-resource "aws_security_group" "idex_secgroup" {
+resource "aws_security_group" "dex_secgroup" {
 
-  vpc_id = aws_vpc.idex_vpc.id
+  vpc_id = aws_vpc.dex_vpc.id
 
   egress {
     from_port   = 0
@@ -78,7 +78,7 @@ resource "aws_security_group" "idex_secgroup" {
   }
 
   tags = {
-    Name = "idex_secgroup"
+    Name = "dex_secgroup"
   }
 }
 
