@@ -1,16 +1,15 @@
 variable "aws_profile" {
-  default     = "staging:eks_example"
+  default     = "default"
   description = "Identity section from ~/.aws/credentials to be used by terraform"
 }
 
 variable "AWS_REGION" {
-  default = "eu-west-1"
+  default = "us-west-2"
 }
 
 variable "AVAILABILITY_ZONE" {
-  default = "eu-west-1a"
+  default = "us-west-2a"
 }
-
 
 variable "instance_type" {
   description = "Type of EC2 instance"

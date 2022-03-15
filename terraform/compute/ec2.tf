@@ -15,17 +15,17 @@ data "aws_ami" "ubuntu" {
 }
 
 
-data "aws_subnet" "idex_subnet_public_1" {
+data "aws_subnet" "dex_subnet_public_1" {
   filter {
     name   = "tag:Name"
-    values = ["idex_subnet_public_1"]
+    values = ["dex_subnet_public_1"]
   }
 }
 
-data "aws_security_group" "idex_secgroup" {
+data "aws_security_group" "dex_secgroup" {
   filter {
     name   = "tag:Name"
-    values = ["idex_secgroup"]
+    values = ["dex_secgroup"]
   }
 }
 
@@ -34,7 +34,7 @@ data "cloudinit_config" "server_config" {
   base64_encode = true
   part {
     content_type = "text/cloud-config"
-    content = templatefile("../../scripts/bootstrap.yml")
+    content = file("../../scripts/cloud-config.yml")
   }
 }
 
@@ -42,11 +42,11 @@ resource "aws_instance" "webserver1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   tags = {
-    Name = "idexserver"
+    Name = "dexserver"
   }
   user_data              = data.cloudinit_config.server_config.rendered
-  subnet_id              = data.aws_subnet.idex_subnet_public_1.id
-  vpc_security_group_ids = [data.aws_security_group.idex_secgroup.id]
+  subnet_id              = data.aws_subnet.dex_subnet_public_1.id
+  vpc_security_group_ids = [data.aws_security_group.dex_secgroup.id]
   key_name               = var.key_name
   root_block_device {
     volume_type = "gp2"
