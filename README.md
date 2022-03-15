@@ -41,7 +41,6 @@ First, run terraform plan & apply within network folder.
 
 Output looks like:
 
-    user_data = data.cloudinit_config.server_config.rendered
     aws_key_pair.aws_key: Creating...
     aws_vpc.dex_vpc: Creating...
     aws_key_pair.aws_key: Creation complete after 0s [id=my_key]
