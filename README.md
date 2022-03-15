@@ -32,10 +32,9 @@ You must see the message: Hello, I was customized by Cloud-init.
 ### How to provision a customized instance on AWS with Terraform
 
 
-You will need configure your AWS credentials for terraform to use. You can follow https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)  and https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access for more details.
+You will need configure your AWS credentials for terraform to use. You can follow https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html  and https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access for more details.
 
 First, run terraform plan & apply within network folder. 
- 
 
     $ terraform plan
     $ terraform apply
@@ -61,7 +60,7 @@ Output looks like:
     aws_route_table_association.prod_crta_public_subnet_1: Creation complete after 0s [id=rtbassoc-083de874a727e9b93]
 
 
-Ahora dentro del grupo de cNow, we need to do the same within compute folder:
+Now, we need to do the same within compute folder:
 
     $ terraform plan
     $ terraform apply
