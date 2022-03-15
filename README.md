@@ -19,7 +19,7 @@ Just inside vagrant diresctory execute:
 
     $ vagrant up
 
-After de VM is ip, you can enter with:
+After de VM is up, you can enter inside the VM with:
 
     $ vagrant ssh
 
